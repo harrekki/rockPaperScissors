@@ -2,11 +2,17 @@
 <html lang="en">
 	<head>
 		<title>Rock, Paper Scissors!</title>
-		<meta charset="UTF-8 />
+		<meta charset="UTF-8" />
 		<style>
 			html, body {
 				background-color: black;
 				color: whitesmoke;
+			}
+
+			h1 {
+				font-family: Tahoma, Geneva, sans-serif;
+				font-size: 2em;
+				text-align: center;
 			}
 		</style>
 	</head>
@@ -14,7 +20,43 @@
 <body>
 	<h1>Rock, Paper, Scissors!</h1>
 	<script>
-		
-	</script>
+		//Create function computerPlay()
+			//Randomly return either "Rock", "Paper", or "Scissors"
+		//Create function playRound() that takes two arguments
+			//Declare variable compSelect and initialize with value computerPlay()
+			//Declare variable playerSelect and initialize with value "rock"
+			//make function case insensitive
+			//return value of each variable
+			//call getWinner()
+			//If getWinner() is true, output string "You win! " + playerSelct + " beats " + compSelect
+			//else output string "You lose! " + compSelect " beats " playerSelect
+		//Create function getWinner() to determine which player wins each round
+			//Declare a boolean variable playerWins
+			//if compSelect equals playerSelect then result is a draw
+			//Rock beats Scissors  - still need to figure out
+			//Paper beats Rock  - still need to figure out
+			//Scissors beat Paper - still need to figure out
+			//if playerSelect beats compSelect, playerWins equal to true
+			//return playerWins
+		//Create function game() to play 5 rounds, accumulate totals, and declare a winner
+			//Declare variable playerScore initialized to 0
+			//Declare a variable compScore initialzed to 0
+			//create a for loop with counter initialized to value of 1, set to repeat
+			//while counter is less than or equal to 4, increasing in by an increment of 1
+				//call function playRound()
+				//If playerWins is true, add 1 to playerScore
+				//If playerWins is false, add 1 to compScore
+				//else do nothing
+			//Output playerScore
+			//Output compScore
+			//If playerScore is greater than compScore
+				//Output "You are the Winner! :-)"
+			//Else Output "You lost! :-("
+		//Create an EOF function
+			//Output prompt "Do you want to play another game?"
+			//if Yes then call game()
+			//else then output "Thanks for playing!"
+
+ 	</script>
 </body>
 </html>
