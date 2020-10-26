@@ -20,24 +20,42 @@
 <body>
 	<h1>Rock, Paper, Scissors!</h1>
 	<script>
-		//Create function computerPlay()
-			//Randomly return either "Rock", "Paper", or "Scissors"
+		//Create function computerPlay() to randomly return either "Rock", "Paper", or "Scissors"
+		function computerPlay() {
+			let newArray = ["rock","paper","scissors"];
+			return newArray[Math.floor(Math.random() * newArray.length)];
+		}
+		//prompt player to choose either rock, paper, or scissors
+		let answer = window.prompt("Rock, Paper, or Scissors?", "Choose one");
 		//Create function playRound() that takes two arguments
-			//Declare variable compSelect and initialize with value computerPlay()
-			//Declare variable playerSelect and initialize with value "rock"
+		function playRound(answer, computerPlay) {			
 			//make function case insensitive
-			//return value of each variable
-			//call getWinner()
-			//If getWinner() is true, output string "You win! " + playerSelct + " beats " + compSelect
+			let playerSelect = answer.toUpperCase();
+			let compSelect = computerPlay().toUpperCase();
+			//declare a boolean variable playerWins that will asigned a value of true if player is winner,
+			//a value of undefined if it is a draw, and a value of false if computer is the winner
+			let playerWins;
+			if((playerSelect == "ROCK" && compSelect == "SCISSORS") ||
+				   (playerSelect == "PAPER" && compSelect == "ROCK") ||
+				   (playerSelect == "SCISSORS" && compSelect == "PAPER")) {
+						playerWins = true;
+				} else if(playerSelect == compSelect){
+					playerWins = undefined;
+				} else {
+						playerWins = false;
+				}
+			//If playerWins is true, output string "You win! " + playerSelct + " beats " + compSelect
+			if(playerWins == true) {
+				return alert("You win! " + playerSelect + " beats " + compSelect);
 			//else output string "You lose! " + compSelect " beats " playerSelect
-		//Create function getWinner() to determine which player wins each round
-			//Declare a boolean variable playerWins
-			//if compSelect equals playerSelect then result is a draw
-			//Rock beats Scissors  - still need to figure out
-			//Paper beats Rock  - still need to figure out
-			//Scissors beat Paper - still need to figure out
-			//if playerSelect beats compSelect, playerWins equal to true
-			//return playerWins
+			} else if(playerWins == false) {
+				return alert("You lose! " + compSelect + " beats " + playerSelect);
+			//if value is undefined, output that it's a draw
+			} else {
+				return alert("It's a draw!");
+			}
+		}
+		console.log(playRound(answer,computerPlay));
 		//Create function game() to play 5 rounds, accumulate totals, and declare a winner
 			//Declare variable playerScore initialized to 0
 			//Declare a variable compScore initialzed to 0
