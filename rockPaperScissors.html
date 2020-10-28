@@ -22,20 +22,17 @@
 	<script>
 		//Create function game() to play 5 rounds, accumulate totals, and declare a winner
 		function game() {
-			//Declare variable playerScore initialized to 0
 			let playerScore = 0;
-			//Declare a variable compScore initialzed to 0
 			let compScore = 0;
-			//Declare a variable to determine if player is the winner
 			let playerWins;
-			//Create function computerPlay() to randomly return either "Rock", "Paper", or "Scissors"
+			//Function to generate computer's choice by random selection from array
 			function computerPlay() {
 				let newArray = ["rock","paper","scissors"];
 				return newArray[Math.floor(Math.random() * newArray.length)];
 			}
-			//Create function playRound() that takes two arguments
+			//Create function playRound() to play one round against the computer
 			function playRound(answer, computerPlay) {			
-				//make function case insensitive
+				//make arguments case insensitive
 				let playerSelect = answer.toUpperCase();
 				let compSelect = computerPlay().toUpperCase();
 				//asign a value to playerWins that will asigned a value of true if player is winner,
@@ -49,38 +46,31 @@
 					} else {
 							playerWins = false;
 					}
-				//If playerWins is true, output string "You win! " + playerSelct + " beats " + compSelect
+				//Determine the winner of the round
 				if(playerWins == true) {
 					return alert("You win! " + playerSelect + " beats " + compSelect);
-				//else output string "You lose! " + compSelect " beats " playerSelect
 				} else if(playerWins == false) {
 					return alert("You lose! " + compSelect + " beats " + playerSelect);
-				//if value is undefined, output that it's a draw
 				} else {
 					return alert("It's a draw!");
 				}
 			}
-			//create a for loop with counter initialized to value of 1, set to repeat
-			//while counter is less than or equal to 5, increasing in by an increment of 1
+			//for loop that plays 5 rounds
 			for(i = 1; i <= 5; i++) {
 				//prompt player to choose either rock, paper, or scissors
 				let answer = window.prompt("Round " + i + " of  5\n" + "Rock, Paper, or Scissors?","Choose one");
-				//call function playRound()
 				playRound(answer, computerPlay);
-				//If playerWins is true, add 1 to playerScore
+				//Calculate scores
 				if(playerWins == true) {
 					playerScore += 1;
-				//If playerWins is false, add 1 to compScore
 				} else if(playerWins == false) {
 				compScore += 1;
 				}
-				//Output playerScore and compScore
 				alert("Player's Score: " + playerScore + " -- Computer's Score: " + compScore);
 			}
-			//If playerScore is greater than compScore, and output "You are the Winner! 
+			//Declare winner of the game
 			if(playerScore > compScore) {
 				alert("You are the Winner! :-)");
-			//Else Output "You lost! :-("
 			} else if(compScore > playerScore) {
 				alert("You lost! :-(");
 			} else {
@@ -88,14 +78,15 @@
 			}
 		}
 		console.log(game());
+		//Function to ask player to replay
 		function endOfFile() {
 			let playAgain = prompt("Do you want to play again? Yes or No");
 			let playAgainCaps = playAgain.toUpperCase();
-			if(playAgainCaps == "YES") {
+			while (playAgainCaps == "YES") {
 				console.log(game());
-			} else {
-				alert("Thanks for playing!!!");
 			}
+			alert("Thanks for playing!!!");
+			
 		}
 		console.log(endOfFile());
  	</script>
