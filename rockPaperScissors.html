@@ -20,61 +20,84 @@
 <body>
 	<h1>Rock, Paper, Scissors!</h1>
 	<script>
-		//Create function computerPlay() to randomly return either "Rock", "Paper", or "Scissors"
-		function computerPlay() {
-			let newArray = ["rock","paper","scissors"];
-			return newArray[Math.floor(Math.random() * newArray.length)];
-		}
-		//prompt player to choose either rock, paper, or scissors
-		let answer = window.prompt("Rock, Paper, or Scissors?", "Choose one");
-		//Create function playRound() that takes two arguments
-		function playRound(answer, computerPlay) {			
-			//make function case insensitive
-			let playerSelect = answer.toUpperCase();
-			let compSelect = computerPlay().toUpperCase();
-			//declare a boolean variable playerWins that will asigned a value of true if player is winner,
-			//a value of undefined if it is a draw, and a value of false if computer is the winner
+		//Create function game() to play 5 rounds, accumulate totals, and declare a winner
+		function game() {
+			//Declare variable playerScore initialized to 0
+			let playerScore = 0;
+			//Declare a variable compScore initialzed to 0
+			let compScore = 0;
+			//Declare a variable to determine if player is the winner
 			let playerWins;
-			if((playerSelect == "ROCK" && compSelect == "SCISSORS") ||
-				   (playerSelect == "PAPER" && compSelect == "ROCK") ||
-				   (playerSelect == "SCISSORS" && compSelect == "PAPER")) {
-						playerWins = true;
-				} else if(playerSelect == compSelect){
-					playerWins = undefined;
+			//Create function computerPlay() to randomly return either "Rock", "Paper", or "Scissors"
+			function computerPlay() {
+				let newArray = ["rock","paper","scissors"];
+				return newArray[Math.floor(Math.random() * newArray.length)];
+			}
+			//Create function playRound() that takes two arguments
+			function playRound(answer, computerPlay) {			
+				//make function case insensitive
+				let playerSelect = answer.toUpperCase();
+				let compSelect = computerPlay().toUpperCase();
+				//asign a value to playerWins that will asigned a value of true if player is winner,
+				//a value of undefined if it is a draw, and a value of false if computer is the winner
+				if((playerSelect == "ROCK" && compSelect == "SCISSORS") ||
+					   (playerSelect == "PAPER" && compSelect == "ROCK") ||
+					   (playerSelect == "SCISSORS" && compSelect == "PAPER")) {
+							playerWins = true;
+					} else if(playerSelect == compSelect){
+						playerWins = undefined;
+					} else {
+							playerWins = false;
+					}
+				//If playerWins is true, output string "You win! " + playerSelct + " beats " + compSelect
+				if(playerWins == true) {
+					return alert("You win! " + playerSelect + " beats " + compSelect);
+				//else output string "You lose! " + compSelect " beats " playerSelect
+				} else if(playerWins == false) {
+					return alert("You lose! " + compSelect + " beats " + playerSelect);
+				//if value is undefined, output that it's a draw
 				} else {
-						playerWins = false;
+					return alert("It's a draw!");
 				}
-			//If playerWins is true, output string "You win! " + playerSelct + " beats " + compSelect
-			if(playerWins == true) {
-				return alert("You win! " + playerSelect + " beats " + compSelect);
-			//else output string "You lose! " + compSelect " beats " playerSelect
-			} else if(playerWins == false) {
-				return alert("You lose! " + compSelect + " beats " + playerSelect);
-			//if value is undefined, output that it's a draw
+			}
+			//create a for loop with counter initialized to value of 1, set to repeat
+			//while counter is less than or equal to 5, increasing in by an increment of 1
+			for(i = 1; i <= 5; i++) {
+				//prompt player to choose either rock, paper, or scissors
+				let answer = window.prompt("Round " + i + " of  5\n" + "Rock, Paper, or Scissors?","Choose one");
+				//call function playRound()
+				playRound(answer, computerPlay);
+				//If playerWins is true, add 1 to playerScore
+				if(playerWins == true) {
+					playerScore += 1;
+				//If playerWins is false, add 1 to compScore
+				} else if(playerWins == false) {
+				compScore += 1;
+				}
+				//Output playerScore and compScore
+				alert("Player's Score: " + playerScore + " -- Computer's Score: " + compScore);
+			}
+			//If playerScore is greater than compScore, and output "You are the Winner! 
+			if(playerScore > compScore) {
+				alert("You are the Winner! :-)");
+			//Else Output "You lost! :-("
+			} else if(compScore > playerScore) {
+				alert("You lost! :-(");
 			} else {
-				return alert("It's a draw!");
+				alert("It's a tie!");
 			}
 		}
-		console.log(playRound(answer,computerPlay));
-		//Create function game() to play 5 rounds, accumulate totals, and declare a winner
-			//Declare variable playerScore initialized to 0
-			//Declare a variable compScore initialzed to 0
-			//create a for loop with counter initialized to value of 1, set to repeat
-			//while counter is less than or equal to 4, increasing in by an increment of 1
-				//call function playRound()
-				//If playerWins is true, add 1 to playerScore
-				//If playerWins is false, add 1 to compScore
-				//else do nothing
-			//Output playerScore
-			//Output compScore
-			//If playerScore is greater than compScore
-				//Output "You are the Winner! :-)"
-			//Else Output "You lost! :-("
-		//Create an EOF function
-			//Output prompt "Do you want to play another game?"
-			//if Yes then call game()
-			//else then output "Thanks for playing!"
-
+		console.log(game());
+		function endOfFile() {
+			let playAgain = prompt("Do you want to play again? Yes or No");
+			let playAgainCaps = playAgain.toUpperCase();
+			if(playAgainCaps == "YES") {
+				console.log(game());
+			} else {
+				alert("Thanks for playing!!!");
+			}
+		}
+		console.log(endOfFile());
  	</script>
 </body>
 </html>
