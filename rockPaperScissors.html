@@ -82,11 +82,11 @@
 		function endOfFile() {
 			let playAgain = prompt("Do you want to play again? Yes or No");
 			let playAgainCaps = playAgain.toUpperCase();
-			while (playAgainCaps == "YES") {
+			if(playAgainCaps == "YES") {
 				console.log(game());
-			}
+			} else {
 			alert("Thanks for playing!!!");
-			
+			}
 		}
 		console.log(endOfFile());
  	</script>
